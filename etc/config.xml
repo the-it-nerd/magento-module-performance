@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <performance>
+            <general>
+                <enabled>1</enabled>
+                <additional_preconnect>
+<![CDATA[https://fonts.gstatic.com
+https://fonts.googleapis.com]]>
+                </additional_preconnect>
+            </general>
+        </performance>
+    </default>
+</config>
