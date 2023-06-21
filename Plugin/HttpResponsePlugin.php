@@ -134,12 +134,20 @@ class HttpResponsePlugin
     private function addServerPushHeader(Http $response, string $body): self
     {
         $items = [];
+        $additionalServerPushLinks = $this->config->getServerPushLinks();
+
         foreach (self::MATCH_REGEX['server_push'] as $type => $regex) {
             preg_match_all($regex, $body, $matches, PREG_SET_ORDER);
             $matches = array_unique(array_column($matches, 2));
 
             foreach ($matches as $item) {
                 $items[] = "<{$item}>; rel=preload; as={$type}";
+            }
+
+            if(isset($additionalServerPushLinks[$type]) && count($additionalServerPushLinks[$type]) > 0) {
+                foreach ($additionalServerPushLinks[$type] as $item) {
+                    $items[] = "<{$item}>; rel=preload; as={$type}";
+                }
             }
         }
 

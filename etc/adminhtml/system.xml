@@ -22,6 +22,37 @@
                     </depends>
                 </field>
             </group>
+            <group id="server_push" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Server Push</label>
+                <field id="additional_image" translate="label" type="textarea" sortOrder="1" showInDefault="1" canRestore="1">
+                    <label>Additional Images</label>
+                    <comment>Add one link per line</comment>
+                    <depends>
+                        <field id="retailreinvented_performance/general/enable">1</field>
+                    </depends>
+                </field>
+                <field id="additional_script" translate="label" type="textarea" sortOrder="1" showInDefault="1" canRestore="1">
+                    <label>Additional JS</label>
+                    <comment>Add one link per line</comment>
+                    <depends>
+                        <field id="retailreinvented_performance/general/enable">1</field>
+                    </depends>
+                </field>
+                <field id="additional_style" translate="label" type="textarea" sortOrder="1" showInDefault="1" canRestore="1">
+                    <label>Additional CSS</label>
+                    <comment>Add one link per line</comment>
+                    <depends>
+                        <field id="retailreinvented_performance/general/enable">1</field>
+                    </depends>
+                </field>
+                <field id="additional_font" translate="label" type="textarea" sortOrder="1" showInDefault="1" canRestore="1">
+                    <label>Additional Fonts</label>
+                    <comment>Add one link per line</comment>
+                    <depends>
+                        <field id="retailreinvented_performance/general/enable">1</field>
+                    </depends>
+                </field>
+            </group>
         </section>
     </system>
 </config>
