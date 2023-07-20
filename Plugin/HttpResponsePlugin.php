@@ -1,7 +1,8 @@
 <?php
 
-namespace TheITNerd\Performance\Plugin;
+declare(strict_types=1);
 
+namespace TheITNerd\Performance\Plugin;
 
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\App\Response\Http;
@@ -39,7 +40,6 @@ class HttpResponsePlugin
         private readonly RequestInterface $request
     )
     {
-
     }
 
     /**
@@ -76,8 +76,8 @@ class HttpResponsePlugin
         preg_match_all(self::MATCH_REGEX['images'], $body, $matches, PREG_SET_ORDER);
         $matches = array_column($matches, 0);
 
-        foreach($matches as $key => $match) {
-            if(str_contains($match, 'loading="lazy"')) {
+        foreach ($matches as $key => $match) {
+            if (str_contains($match, 'loading="lazy"')) {
                 unset($matches[$key]);
             } else {
                 $lazyMatch = str_replace('<img ', '<img loading="lazy" ', $match);
@@ -98,10 +98,10 @@ class HttpResponsePlugin
         $matches = array_column($matches, 0);
 
         foreach ($matches as $match) {
-            $body = str_replace($match, '',$body);
+            $body = str_replace($match, '', $body);
         }
 
-        $body = str_replace('</body>', implode("\n", $matches).'</body>', $body);
+        $body = str_replace('</body>', implode("\n", $matches) . '</body>', $body);
 
         return $this;
     }
@@ -112,13 +112,13 @@ class HttpResponsePlugin
      */
     private function canChangeRequest(Http $response): bool
     {
-        if($this->request->isXMLHttpRequest()) {
+        if ($this->request->isXMLHttpRequest()) {
             return false;
         }
 
         $body = $response->getBody();
 
-        if(!str_contains($body, '<html')) {
+        if (!str_contains($body, '<html')) {
             return false;
         }
 
@@ -144,7 +144,7 @@ class HttpResponsePlugin
                 $items[] = "<{$item}>; rel=preload; as={$type}";
             }
 
-            if(isset($additionalServerPushLinks[$type]) && count($additionalServerPushLinks[$type]) > 0) {
+            if (isset($additionalServerPushLinks[$type]) && count($additionalServerPushLinks[$type]) > 0) {
                 foreach ($additionalServerPushLinks[$type] as $item) {
                     $items[] = "<{$item}>; rel=preload; as={$type}";
                 }

@@ -1,11 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace TheITNerd\Performance\Helper;
 
 use Magento\Framework\App\Helper\AbstractHelper;
-use Magento\Framework\App\ObjectManager;
 use Magento\Store\Model\ScopeInterface;
-use TheITNerd\Core\Api\Adapters\PostcodeClientInterface;
 
 /**
  * Class Config
@@ -27,7 +27,7 @@ class Config extends AbstractHelper
      */
     public function isEnabled(): bool
     {
-        return (bool)$this->scopeConfig->getValue(self::PERFORMANCE_GENERAL_ENABLED_CONFIG_PATH, ScopeInterface::SCOPE_STORE);
+        return $this->scopeConfig->isSetFlag(self::PERFORMANCE_GENERAL_ENABLED_CONFIG_PATH, ScopeInterface::SCOPE_STORE);
     }
 
     /**
