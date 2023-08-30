@@ -19,9 +19,9 @@ class HttpResponsePlugin
             'css' => '/href="([^>"]+\.css|.+css[0-9A-Za-z?=:+&,@;]+)"/',
             'js' => '/src="([^>"]+\.js)"/'
         ],
-        'preconnect' => '/((src|href)="([^>"]+\.(ico|jpg|jpeg|png|gif|svg|js|css|swf|eot|ttf|otf|woff|woff2|json|webp))")/',
+        'preconnect' => '/((src|second-src|href)="([^>"]+\.(ico|jpg|jpeg|png|gif|svg|js|css|swf|eot|ttf|otf|woff|woff2|json|webp))")/',
         'server_push' => [
-            'image' => '/(src|href)="([^>"]+\.(ico|jpg|jpeg|png|gif|svg|webp))"/',
+            'image' => '/(src|second-src|href)="([^>"]+\.(ico|jpg|jpeg|png|gif|svg|webp))"/',
             'script' => '/(src)="([^>"]+\.js)"/',
             'style' => '/(href)="([^>"]+\.css|.+css[0-9A-Za-z?=:+&,@;]+)"/',
             'font' => '/(src|href)="([^>"]+\.(eot|ttf|otf|woff|woff2))"/'
