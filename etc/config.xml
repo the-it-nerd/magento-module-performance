@@ -9,6 +9,12 @@
 https://fonts.googleapis.com]]>
                 </additional_preconnect>
             </general>
+            <server_push>
+                <max_images>10</max_images>
+                <max_css>10</max_css>
+                <max_js>10</max_js>
+                <max_font>10</max_font>
+            </server_push>
         </performance>
     </default>
 </config>

@@ -24,6 +24,43 @@
             </group>
             <group id="server_push" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>Server Push</label>
+                <field id="max_images" translate="label" type="text" sortOrder="1" showInDefault="1" canRestore="1">
+                    <label>Limit Images Files</label>
+                    <comment>The maixum number of images to get from the page and to the server push header</comment>
+                    <validate>validate-zero-or-greater</validate>
+                    <depends>
+                        <field id="retailreinvented_performance/general/enable">1</field>
+                    </depends>
+                </field>
+
+                <field id="max_css" translate="label" type="text" sortOrder="1" showInDefault="1" canRestore="1">
+                    <label>Limit CSS Files</label>
+                    <comment>The maximum number of css files to get from the page and to the server push header</comment>
+                    <validate>validate-zero-or-greater</validate>
+                    <depends>
+                        <field id="retailreinvented_performance/general/enable">1</field>
+                    </depends>
+                </field>
+
+                <field id="max_js" translate="label" type="text" sortOrder="1" showInDefault="1" canRestore="1">
+                    <label>Limit JS Files</label>
+                    <comment>The maximum number of js files to get from the page and to the server push header</comment>
+                    <validate>validate-zero-or-greater</validate>
+                    <depends>
+                        <field id="retailreinvented_performance/general/enable">1</field>
+                    </depends>
+                </field>
+
+                <field id="max_font" translate="label" type="text" sortOrder="1" showInDefault="1" canRestore="1">
+                    <label>Limit Font Files</label>
+                    <comment>The maximum number of font files to get from the page and to the server push header</comment>
+                    <validate>validate-zero-or-greater</validate>
+                    <depends>
+                        <field id="retailreinvented_performance/general/enable">1</field>
+                    </depends>
+                </field>
+
+
                 <field id="additional_image" translate="label" type="textarea" sortOrder="1" showInDefault="1" canRestore="1">
                     <label>Additional Images</label>
                     <comment>Add one link per line</comment>

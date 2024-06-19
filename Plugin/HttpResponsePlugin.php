@@ -135,6 +135,7 @@ class HttpResponsePlugin
     {
         $items = [];
         $additionalServerPushLinks = $this->config->getServerPushLinks();
+        $serverPushLinksLimit = $this->config->getServerPushLimits();
 
         foreach (self::MATCH_REGEX['server_push'] as $type => $regex) {
             preg_match_all($regex, $body, $matches, PREG_SET_ORDER);
@@ -142,6 +143,9 @@ class HttpResponsePlugin
 
             foreach ($matches as $item) {
                 $items[] = "<{$item}>; rel=preload; as={$type}";
+                if($serverPushLinksLimit[$type] > 0 && count($items) >= $serverPushLinksLimit[$type]) {
+                    break;
+                }
             }
 
             if (isset($additionalServerPushLinks[$type]) && count($additionalServerPushLinks[$type]) > 0) {

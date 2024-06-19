@@ -16,6 +16,10 @@ class Config extends AbstractHelper
     public const PERFORMANCE_GENERAL_ENABLED_CONFIG_PATH = "performance/general/enabled";
     public const PERFORMANCE_GENERAL_ADDITIONAL_PRECONNECT_CONFIG_PATH = "performance/general/additional_preconnect";
 
+    public const PERFORMANCE_SERVER_PUSH_MAX_IMAGES_CONFIG_PATH = "performance/server_push/max_images";
+    public const PERFORMANCE_SERVER_PUSH_MAX_CSS_CONFIG_PATH = "performance/server_push/max_css";
+    public const PERFORMANCE_SERVER_PUSH_MAX_JS_CONFIG_PATH = "performance/server_push/max_js";
+    public const PERFORMANCE_SERVER_PUSH_MAX_FONT_CONFIG_PATH = "performance/server_push/max_font";
     public const PERFORMANCE_SERVER_PUSH_ADDITIONAL_IMAGE_CONFIG_PATH = "performance/server_push/additional_image";
     public const PERFORMANCE_SERVER_PUSH_ADDITIONAL_SCRIPT_CONFIG_PATH = "performance/server_push/additional_script";
     public const PERFORMANCE_SERVER_PUSH_ADDITIONAL_STYLE_CONFIG_PATH = "performance/server_push/additional_style";
@@ -42,6 +46,18 @@ class Config extends AbstractHelper
         }
 
         return explode("\n", $entries);
+    }
+
+    /**
+     * @return int[]
+     */
+    public function getServerPushLimits(): array {
+        return [
+            'image' => (int) $this->scopeConfig->getValue(self::PERFORMANCE_SERVER_PUSH_MAX_IMAGES_CONFIG_PATH, ScopeInterface::SCOPE_STORE),
+            'css' => (int) $this->scopeConfig->getValue(self::PERFORMANCE_SERVER_PUSH_MAX_CSS_CONFIG_PATH, ScopeInterface::SCOPE_STORE),
+            'js' => (int) $this->scopeConfig->getValue(self::PERFORMANCE_SERVER_PUSH_MAX_JS_CONFIG_PATH, ScopeInterface::SCOPE_STORE),
+            'font' => (int) $this->scopeConfig->getValue(self::PERFORMANCE_SERVER_PUSH_MAX_FONT_CONFIG_PATH, ScopeInterface::SCOPE_STORE)
+        ];
     }
 
     /**
