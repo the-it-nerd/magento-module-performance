@@ -54,8 +54,8 @@ class Config extends AbstractHelper
     public function getServerPushLimits(): array {
         return [
             'image' => (int) $this->scopeConfig->getValue(self::PERFORMANCE_SERVER_PUSH_MAX_IMAGES_CONFIG_PATH, ScopeInterface::SCOPE_STORE),
-            'css' => (int) $this->scopeConfig->getValue(self::PERFORMANCE_SERVER_PUSH_MAX_CSS_CONFIG_PATH, ScopeInterface::SCOPE_STORE),
-            'js' => (int) $this->scopeConfig->getValue(self::PERFORMANCE_SERVER_PUSH_MAX_JS_CONFIG_PATH, ScopeInterface::SCOPE_STORE),
+            'style' => (int) $this->scopeConfig->getValue(self::PERFORMANCE_SERVER_PUSH_MAX_CSS_CONFIG_PATH, ScopeInterface::SCOPE_STORE),
+            'script' => (int) $this->scopeConfig->getValue(self::PERFORMANCE_SERVER_PUSH_MAX_JS_CONFIG_PATH, ScopeInterface::SCOPE_STORE),
             'font' => (int) $this->scopeConfig->getValue(self::PERFORMANCE_SERVER_PUSH_MAX_FONT_CONFIG_PATH, ScopeInterface::SCOPE_STORE)
         ];
     }
