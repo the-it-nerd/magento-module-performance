@@ -6,6 +6,7 @@ namespace TheITNerd\Performance\Plugin;
 
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\App\Response\Http;
+use Magento\Store\Model\StoreManagerInterface;
 use TheITNerd\Performance\Helper\Config;
 
 /**
@@ -34,10 +35,12 @@ class HttpResponsePlugin
     /**
      * @param Config $config
      * @param RequestInterface $request
+     * @param StoreManagerInterface $storeManager
      */
     public function __construct(
         private readonly Config           $config,
-        private readonly RequestInterface $request
+        private readonly RequestInterface $request,
+        private readonly StoreManagerInterface $storeManager
     )
     {
     }
@@ -135,17 +138,17 @@ class HttpResponsePlugin
     {
         $items = [];
         $additionalServerPushLinks = $this->config->getServerPushLinks();
-        $serverPushLinksLimit = $this->config->getServerPushLimits();
 
         foreach (self::MATCH_REGEX['server_push'] as $type => $regex) {
             preg_match_all($regex, $body, $matches, PREG_SET_ORDER);
             $matches = array_unique(array_column($matches, 2));
 
             foreach ($matches as $item) {
-                $items[] = "<{$item}>; rel=preload; as={$type}";
-                if($serverPushLinksLimit[$type] > 0 && count($items) >= $serverPushLinksLimit[$type]) {
-                    break;
+                if($type === 'image' && !str_contains($item, $this->storeManager->getStore()->getBaseUrl())) {
+                    continue;
                 }
+
+                $items[] = "<{$item}>; rel=preload; as={$type}";
             }
 
             if (isset($additionalServerPushLinks[$type]) && count($additionalServerPushLinks[$type]) > 0) {
