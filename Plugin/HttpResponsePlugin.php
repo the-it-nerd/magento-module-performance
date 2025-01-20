@@ -144,7 +144,7 @@ class HttpResponsePlugin
             $matches = array_unique(array_column($matches, 2));
 
             foreach ($matches as $item) {
-                if($type === 'image' && !str_contains($item, $this->storeManager->getStore()->getBaseUrl())) {
+                if(!str_contains($item, $this->storeManager->getStore()->getBaseUrl())) {
                     continue;
                 }
 
